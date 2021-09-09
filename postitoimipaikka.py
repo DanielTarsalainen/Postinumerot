@@ -1,14 +1,23 @@
-import urllib.request
-import json
 import http_pyynto
 
 
 postalinfo = http_pyynto.fetch_postaldata()
 
-postalnumber = input('Kirjoita postinumero: ')
 
-if postalnumber in postalinfo:
-    print(postalinfo[postalnumber])
-else:
-    print("Väärä syöte. Yritä uudelleen")
+def seek_district(number):
+    postalinfo = http_pyynto.fetch_postaldata()
 
+    if number in postalinfo:
+        return postalinfo[number]
+    else:
+        return 'Unindentified'
+
+
+def main():
+    postalnumber = input('Kirjoita postinumero: ')
+
+    print(seek_district(postalnumber))
+
+
+if __name__ == '__main__':
+    main()
